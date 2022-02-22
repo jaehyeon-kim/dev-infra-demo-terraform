@@ -16,7 +16,7 @@ module "vpn" {
   iam_instance_profile_arn  = aws_iam_instance_profile.vpn[0].arn
 
   # Launch template
-  create_lt              = true
+  create_launch_template = true
   update_default_version = true
 
   user_data_base64 = base64encode(join("\n", [
@@ -52,7 +52,7 @@ module "vpn" {
     override = local.vpn_spot_override
   }
 
-  tags_as_map = {
+  tags = {
     "Name" = "${local.resource_prefix}-vpn-asg"
   }
 }
